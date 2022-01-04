@@ -7,13 +7,11 @@ import 'package:flutter/material.dart';
 class UsuarioProvider extends ChangeNotifier {
   HiveDatabase localDatabase = HiveDatabase.instance;
   late Usuario usuario = localDatabase.boxUsuario.getAt(0);
-
   late String mensaje;
   bool isLoading = false;
   late bool error;
   late bool terminada;
   late bool _isUploading;
-
   var listaUsuario = [];
   var listaDummySearch = [];
   var listaPost = [];
