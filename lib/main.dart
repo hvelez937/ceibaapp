@@ -26,11 +26,18 @@ class _MyAppState extends State<MyApp> {
               create: (context) => UsuarioProvider()..init()),
         ],
         child: MaterialApp(
-          debugShowCheckedModeBanner: false, // eliminar banner
+          debugShowCheckedModeBanner: false,
+          title: 'Ceiba',
           home: FutureBuilder(
             future: localDatabase.initDatabase(),
-            builder: (context, snapshot) {
-              return UsuarioPage();
+            builder: (BuildContext context, AsyncSnapshot<bool> snap) {
+              if (snap.data != null) {
+                return UsuarioPage();
+              } else {
+                return const Scaffold(
+                  body: Center(child: Text("Powered")),
+                );
+              }
             },
           ),
           routes: buildAppRoutes(),

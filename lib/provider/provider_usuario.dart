@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class UsuarioProvider extends ChangeNotifier {
   HiveDatabase localDatabase = HiveDatabase.instance;
+  late Usuario usuario = localDatabase.boxUsuario.getAt(0);
 
   late String mensaje;
   bool isLoading = false;
@@ -20,7 +21,7 @@ class UsuarioProvider extends ChangeNotifier {
   bool get isUploading => _isUploading;
 
   void init() async {
-    if (listaUsuario.isEmpty) {
+    if (localDatabase.boxUsuario.isEmpty) {
       cargarlista();
     }
     notifyListeners();
